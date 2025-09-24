@@ -1,6 +1,8 @@
-<img src="./configs/images/icon.png" alt="Omakos Icon" width="100"/>
+# Omakos Blade
 
-# Omakos
+Opinionated Ubuntu Setup by @bladecoder.
+
+Omakos Blade is a fork of [Omakos](https://github.com/yatish27/omakos).
 
 > Omakos turns your macOS laptop into a fully functional development machine in a single command.
 > A shell script to setup a new mac.

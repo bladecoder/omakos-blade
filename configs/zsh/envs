@@ -1,0 +1,11 @@
+# Editor used by CLI
+export EDITOR="vim"
+export SUDO_EDITOR="$EDITOR"
+export BAT_THEME=ansi
+
+export GIT_HOME=$HOME/git
+export ANDROID_HOME=$HOME/android-sdk
+
+# for MacOS
+[ -d "$HOME/git-blade" ] && export GIT_HOME=$HOME/git-blade
+[ -d "$HOME/Library/Android/sdk" ] && export ANDROID_HOME=$HOME/Library/Android/sdk

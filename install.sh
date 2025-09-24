@@ -26,12 +26,12 @@ if [ -d "$INSTALL_DIR" ]; then
   rm -rf "$INSTALL_DIR"
 fi
 
-echo -e "${BLUE}Downloading Omakos...${NC}"
-curl -L "https://github.com/yatish27/omakos/archive/refs/heads/main.zip" -o "$TEMP_ZIP"
+echo -e "${BLUE}Downloading Omakos Blade...${NC}"
+curl -L "https://github.com/bladecoder/omakos-blade/archive/refs/heads/main.zip" -o "$TEMP_ZIP"
 
 echo -e "${BLUE}Extracting files...${NC}"
 unzip -q "$TEMP_ZIP" -d "/tmp"
-mv "/tmp/omakos-main" "$INSTALL_DIR"
+mv "/tmp/omakos-blade-main" "$INSTALL_DIR"
 rm -f "$TEMP_ZIP"
 
 cd "$INSTALL_DIR"

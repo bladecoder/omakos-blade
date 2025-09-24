@@ -1,0 +1,29 @@
+# History control
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+HISTSIZE=32768
+SAVEHIST=32768
+HISTFILE=~/.zsh_history
+
+# Autocompletion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # Case-insensitive
+
+# --- Navegación rápida ---
+setopt AUTO_CD                        # Ir a directorios solo escribiendo el nombre
+setopt AUTO_PUSHD                     # pushd por defecto en cd
+setopt PUSHD_IGNORE_DUPS              # Evitar duplicados en el stack de directorios
+
+# --- Corrección automática ---
+setopt CORRECT                        # Sugerir correcciones en comandos
+setopt CORRECT_ALL                    # También en argumentos
+
+# --- Comodines ---
+setopt EXTENDED_GLOB                  # Globs avanzados
+setopt NUMERIC_GLOB_SORT              # Orden numérico
+
+# Set complete path
+export PATH="$HOME/.local/bin:$PATH"

@@ -1,0 +1,72 @@
+autoload -Uz vcs_info
+setopt PROMPT_SUBST
+
+# Configuración de vcs_info
+zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:*' enable git
+
+# Variable para guardar el código de retorno
+typeset -g LAST_EXIT_CODE=0
+
+preexec() {
+  # Esta función se ejecuta justo antes de cada comando
+  # Establecer título de la ventana al comando en ejecución
+  #local CMD=${1[(wr)^(*=*|sudo|ssh|zsh|-*)]:gs/%/%%}
+  #print -Pn "\e]0;${CMD}\a"
+}
+
+precmd() {
+  # Guardar el código de retorno del último comando
+  local exit_status=$?
+  LAST_EXIT_CODE=$exit_status
+  
+  # Establecer título de la ventana a la carpeta actual
+  print -Pn "\e]0;%~\a"
+  
+  vcs_info
+}
+
+# Funciones para generar partes dinámicas del prompt
+git_branch_status() {
+  if git rev-parse --is-inside-work-tree &>/dev/null; then
+    local branch_info=""
+    local push_pull_info=""
+    
+    # Determinar estado de cambios locales
+    if [[ -n $(git diff --cached --name-only 2>/dev/null) ]]; then
+      branch_info="%F{yellow}${vcs_info_msg_0_}%f"   # Cambios staged
+    elif [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+      branch_info="%F{red}${vcs_info_msg_0_}%f"      # Cambios sin commitear
+    else
+      branch_info="%F{green}${vcs_info_msg_0_}%f"    # Working tree limpio
+    fi
+    
+    # Verificar si hay commits para push o pull
+    if git rev-parse --abbrev-ref @'{u}' &>/dev/null; then
+      # Hay una rama remota configurada
+      local ahead=$(git rev-list --count @{u}..HEAD 2>/dev/null)
+      local behind=$(git rev-list --count HEAD..@{u} 2>/dev/null)
+      
+      if [[ $ahead -gt 0 && $behind -gt 0 ]]; then
+        push_pull_info="%F{yellow}⇅%f"  # Necesita push y pull
+      elif [[ $ahead -gt 0 ]]; then
+        push_pull_info="%F{cyan}↑%f"    # Necesita push (flecha arriba)
+      elif [[ $behind -gt 0 ]]; then
+        push_pull_info="%F{magenta}↓%f" # Necesita pull (flecha abajo)
+      fi
+    fi
+    
+    echo -n "${branch_info}${push_pull_info} "
+  fi
+}
+
+prompt_symbol() {
+  if [[ $LAST_EXIT_CODE -eq 0 ]]; then
+    echo -n "%F{green}❯%f"
+  else
+    echo -n "%F{red}❯%f"
+  fi
+}
+
+# Definir el prompt usando las funciones dinámicas
+PS1='%F{cyan}%~%f $(git_branch_status)$(prompt_symbol) '

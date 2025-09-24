@@ -1,0 +1,53 @@
+# Configuración de zsh equivalente a inputrc de bash
+# Metadatos y comportamiento de terminal
+setopt NO_BEEP
+setopt INTERACTIVE_COMMENTS
+
+# Configuración de autocompletar
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # Case-insensitive matching
+zstyle ':completion:*' list-suffixes true # Autocompleta con sufijos
+zstyle ':completion:*' expand prefix suffix # Expandir prefijos/sufijos
+
+# Directorios simbólicos
+setopt MARK_DIRS
+zstyle ':completion:*' special-dirs true # Maneja directorios especiales . y ..
+zstyle ':completion:*' squeeze-slashes true # Reduce slashes consecutivos
+zstyle ':completion:*:cd:*' ignore-parents parent pwd # No muestra directorio actual en completado de cd
+
+# Archivos ocultos
+setopt GLOB_DOTS # Habilitar/deshabilitar autocompleta de archivos ocultos
+# Para deshabilitar: unsetopt GLOB_DOTS
+
+# Estadísticas visibles para completado
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} # Usar colores de LS_COLORS
+zstyle ':completion:*' file-list all # Muestra detalles de archivos
+
+# Configuración de colores para completado
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# Configuración de número máximo de opciones
+zstyle ':completion:*' list-prompt '%SPresiona espacio para más, o Ctrl-C para cancelar%s'
+zstyle ':completion:*' select-prompt '%SDesplázate para seleccionar%s'
+
+# Binding de teclas
+# Teclas de flechas para búsqueda en historial
+bindkey '^[[A' history-beginning-search-backward  # Flecha arriba
+bindkey '^[[B' history-beginning-search-forward   # Flecha abajo
+bindkey '^[[C' forward-char                      # Flecha derecha
+bindkey '^[[D' backward-char                     # Flecha izquierda
+
+# Teclas de navegación común
+bindkey '^[[H' beginning-of-line      # Home
+bindkey '^[[F' end-of-line            # End
+bindkey '^[[5~' up-line-or-history    # Page Up
+bindkey '^[[6~' down-line-or-history  # Page Down
+
+# Secuencias alternativas (para diferentes terminales)
+bindkey '^[[1~' beginning-of-line     # Home alternativo
+bindkey '^[[4~' end-of-line           # End alternativo
+bindkey '^[OH' beginning-of-line      # Home en algunas terminales
+bindkey '^[OF' end-of-line            # End en algunas terminales
+
+# Habilitar completado inteligente que salta texto ya completado
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' menu select=2
