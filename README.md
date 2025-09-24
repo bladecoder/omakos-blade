@@ -2,7 +2,7 @@
 
 Opinionated Ubuntu Setup by @bladecoder.
 
-Omakos Blade is a fork of [Omakos](https://github.com/yatish27/omakos).
+*Omakos Blade* is a fork of [Omakos](https://github.com/yatish27/omakos).
 
 > Omakos turns your macOS laptop into a fully functional development machine in a single command.
 > A shell script to setup a new mac.
@@ -23,7 +23,7 @@ You can install Omakos using one of these two methods:
 Run this single command in your terminal:
 
 ```sh
-curl -L https://raw.githubusercontent.com/yatish27/omakos/main/install.sh | bash
+curl -L https://raw.githubusercontent.com/yatish27/omakos/main/boot.sh | bash
 ```
 
 ### Option 2: Manual Install
