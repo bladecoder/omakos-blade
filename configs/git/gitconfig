@@ -11,7 +11,8 @@ excludesfile = ~/.gitignore_global
 ui = auto
 
 [push]
-default = simple
+default = current
+autoSetupRemote = true
 
 [pull]
 rebase = false
