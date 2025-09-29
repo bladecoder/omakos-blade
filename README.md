@@ -164,31 +164,6 @@ The scripts are designed to be:
 
 The project follows a modular structure where each component is responsible for a specific setup task. You can run any script individually if you only want to set up specific parts of your system.
 
-```
-omakos/
-├── setup.sh                 # Main setup script
-├── scripts/
-│   ├── ascii.sh            # ASCII art for terminal output
-│   ├── brew.sh             # Homebrew package installation
-│   ├── cursor_setup.sh     # Cursor editor configuration
-│   ├── dotfiles_setup.sh   # Dotfiles management
-│   ├── git_setup.sh        # Git configuration
-│   ├── mac_setup.sh        # macOS system preferences
-│   ├── mise.sh             # Mise runtime manager setup
-│   ├── ssh_setup.sh        # SSH configuration
-│   ├── utils.sh            # Utility functions
-│   └── zsh_setup.sh        # ZSH shell setup
-├── configs/
-│   ├── Brewfile            # Homebrew packages list
-│   ├── cursor/             # Cursor editor settings
-│   ├── git/                # Git configuration files
-│   ├── ssh/                # SSH configuration files
-│   ├── gemrc              # Ruby gems configuration
-│   ├── ghostty.conf       # Ghostty terminal config
-│   ├── mise.toml          # Mise runtime versions config
-│   └── rubocop.yml        # Ruby code style config
-└── README.md
-```
 
 ### Configuration Files
 

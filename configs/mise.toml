@@ -1,10 +1,11 @@
 [tools]
 # Latest versions of each tool
 rust = 'latest'
-ruby = 'latest'
+#ruby = 'latest'
 go = 'latest'
 node = 'lts'
 python = 'latest'
+java = 'lts'
 
 [settings]
 # Always keep the downloaded archives for faster reinstalls
@@ -17,4 +18,3 @@ experimental = true
 [settings.status]
 show_env = true
 show_tools = true
-
